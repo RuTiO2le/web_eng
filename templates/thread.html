@@ -1,40 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>掲示板</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">掲示板</h1>
 
-<form action="/result" method="post">
-    <input type="hidden" name="thread" value="{{ thread }}">
-    <label for="article">投稿</label>
-    <!-- <input type="text" name="article"> -->
-    <textarea name="article" rows="6" cols="100"></textarea>
-    <p></p>
-    <label for="name">名前</label>
-    <input type="text" name="name">
-    <button type="submit">送信する</button>
-</form>
+    <form action="/result" method="post">
+        <input type="hidden" name="thread" value="{{ thread }}">
+        <div class="form-group">
+            <label for="article">投稿</label>
+            <textarea class="form-control" name="article" rows="6" cols="100"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="name">名前</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <button type="submit" class="btn btn-primary">送信する</button>
+    </form>
 
-<h2>投稿一覧 {{ thread }}</h2>
+    <h2 class="mt-4">投稿一覧 {{ thread }}</h2>
 
-    <table class="table">
-    <thead class="thead-dark">
-        <tr>
-        <th>日付</th>
-        <th>名前</th>
-        <th>投稿</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for f in articles: %}
+    <table class="table mt-3">
+        <thead class="thead-dark">
             <tr>
-                <th scope="row">{{ f.pub_date }}</th>
-                <td>{{ f.name }}</td>
-                <td>{{ f.article }}</td>
+                <th>日付</th>
+                <th>名前</th>
+                <th>投稿</th>
             </tr>
-        {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+            {% for f in articles %}
+                <tr>
+                    <td>{{ f.pub_date }}</td>
+                    <td>{{ f.name }}</td>
+                    <td>{{ f.article|replace('\n', '<br>')|safe }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
-<form action="/" method="get">
-    <button type="submit">戻る</button>
-</form>
+    <form action="/" method="get" class="mt-4">
+        <button type="submit" class="btn btn-secondary">戻る</button>
+    </form>
+</div>
 {% endblock %}

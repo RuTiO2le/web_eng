@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>書き込みました</h1>
-    <br>
-    <p>{{ now }} {{ name }} {{ article }}</p>
+    <div class="container mt-4">
+        <h1>書き込みました</h1>
+        <div class="mb-4"></div> <!-- 余白を追加 -->
+        <p>{{ now }} {{ name }} {{ article }}</p>
 
-    <form action="/" method="get">
-        <button type="submit">戻る</button>
-    </form>
+        <form action="/" method="get" class="mt-3">
+            <button type="submit" class="btn btn-primary">戻る</button>
+        </form>
+    </div>
 {% endblock %}

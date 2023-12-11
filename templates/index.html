@@ -1,19 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>掲示板</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">掲示板</h1>
 
-    <form action="/thread" method="post">
-        <label for="thread">新しいスレッドを立てる</label>
-        <input type="text" name="thread">
-        <button type="submit">作る</button>
+    <form action="/thread" method="post" class="mb-4">
+        <div class="form-group">
+            <label for="thread">新しいスレッドを立てる</label>
+            <input type="text" class="form-control" name="thread">
+        </div>
+        <button type="submit" class="btn btn-primary">作る</button>
     </form>
 
     <h3>スレッド一覧</h3>
-    {% for thread in threads: %}
-        <form action="/thread" method="post">
+    {% for thread in threads %}
+        <form action="/thread" method="post" class="mb-2">
             <input type="hidden" name="thread" value="{{ thread.threadname }}">
-            <button type="submit">{{ thread.threadname }}</button>
+            <button type="submit" class="btn btn-outline-secondary">{{ thread.threadname }}</button>
         </form>
     {% endfor %}
-
+</div>
 {% endblock %}
